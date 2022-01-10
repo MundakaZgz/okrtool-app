@@ -19,8 +19,8 @@ jobs:
         uses: actions/build-docker-image@v2
         with:
           docker-image: 'node:14'
-          docker-build-args:
-            - "--build-arg'
-            - 'NODE_ENV=production'
-            - '--build-arg'
-            - 'NODE_VERSION=14'
+#          docker-build-args:
+#            - '--build-arg'
+#            - 'NODE_ENV=production'
+#            - '--build-arg'
+#            - 'NODE_VERSION=14'
