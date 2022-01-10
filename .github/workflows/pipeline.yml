@@ -1,7 +1,7 @@
-name: Push pipeline
+name: OKR Tool App pipeline
 on: [push]
 jobs:
-  test:
+  Test:
     runs-on: ubuntu-latest    
     steps:
       - uses: actions/checkout@v2
@@ -10,8 +10,8 @@ jobs:
           node-version: '14'
       - run: npm install
       - run: npm run test:unit
-  deploy:
-    needs: [test]
+  Deploy:
+    needs: [Test]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -24,7 +24,7 @@ jobs:
       - name: Build
         run: npm run build
 #  docker-image:
-#    needs: [deploy]
+#    needs: [Deploy]
 #    runs-on: ubuntu-latest
 #    steps:
 #      - name: Checkout
