@@ -1,0 +1,14 @@
+name: Push pipeline
+on: [push]
+jobs:
+  Compile-And-Build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        uses: actions/npm-install@v1
+      - name: Build
+        run: npm run build
+      - name: Test
+        run: npm run test
