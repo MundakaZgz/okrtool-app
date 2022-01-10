@@ -1,7 +1,17 @@
 name: Push pipeline
 on: [push]
 jobs:
-  Compile-And-Build:
+  test:
+    runs-on: ubuntu-latest    
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - run: npm install
+      - run: npm test
+  deploy:
+    needs: [test]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -13,8 +23,10 @@ jobs:
       - run: npm install
       - name: Build
         run: npm run build
-      - name: Test
-        run: npm run test
+  docker-image:
+    needs: [deploy]
+    runs-on: ubuntu-latest
+    steps:
       - name: Create docker image
         uses: actions/build-docker-image@v2
         with:
