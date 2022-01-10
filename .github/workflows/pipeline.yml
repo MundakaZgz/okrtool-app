@@ -15,3 +15,12 @@ jobs:
         run: npm run build
       - name: Test
         run: npm run test
+      - name: Create docker image
+        uses: actions/build-docker-image@v2
+        with:
+          docker-image: 'node:14'
+          docker-build-args:
+            - "--build-arg'
+            - 'NODE_ENV=production'
+            - '--build-arg'
+            - 'NODE_VERSION=14'
