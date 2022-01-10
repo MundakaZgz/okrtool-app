@@ -1,37 +1,27 @@
-// login view
 <template>
-  <div class="login">
-    <h1>Login</h1>
-    <form @submit.prevent="login">
+  <div class="password-recovery">
+    <h1>Password Recovery</h1>
+    <form @submit.prevent="recover">
       <div class="form-group">
         <label for="email">Email</label>
         <input type="email" id="email" v-model="email" class="form-control">
       </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" v-model="password" class="form-control">
-      </div>
-      <button class="btn btn-primary">Login</button>
+      <button class="btn btn-primary">Recover</button>
     </form>
-    <router-link to="/password-recovery">Forgot your password?</router-link>
   </div>
 </template>
-
 <script>
 import axios from 'axios'
-
 export default {
   data() {
     return {
-      email: '',
-      password: ''
+      email: ''
     }
   },
   methods: {
-    login() {
-      axios.post('/login', {
-        email: this.email,
-        password: this.password
+    recover() {
+      axios.post('/password/recovery', {
+        email: this.email
       })
       .then(response => {
         console.log(response);
@@ -43,9 +33,8 @@ export default {
   }
 }
 </script>
-
 <style scoped>
-.login {
+.password-recovery {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
