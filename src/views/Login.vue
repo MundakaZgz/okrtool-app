@@ -1,19 +1,20 @@
 // login view
 <template>
   <div class="login">
-    <h1>Login</h1>
     <form @submit.prevent="login">
       <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" v-model="email" class="form-control">
+        <input type="email" id="email" placeholder="Email" v-model="email" class="form-control">
       </div>
       <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" v-model="password" class="form-control">
+        <input type="password" id="password" placeholder="Password" v-model="password" class="form-control">
       </div>
+      <router-link to="/password-recovery">Forgot your password?</router-link>
       <button class="btn btn-primary">Login</button>
     </form>
-    <router-link to="/password-recovery">Forgot your password?</router-link>
+    <div class="separator"></div>
+    <form @submit.prevent="register">
+      <button class="btn btn-secondary">Register</button>
+    </form>
   </div>
 </template>
 
@@ -39,17 +40,42 @@ export default {
       .catch(error => {
         console.log(error);
       });
+    },
+    register() {
+      this.$router.push('/register')
     }
   }
 }
 </script>
 
 <style scoped>
-.login {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+  .login {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px; 
+  }
+  
+  .login * {
+    margin-top: 10px;
+  }
+
+  .login form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .separator {
+    margin-top: 20px;
+    border-top: 1px solid #ccc;
+  }
+
+  input, button {
+    padding: 0;
+    width: 300px;
+    height: 30px;
+  }
 </style>
